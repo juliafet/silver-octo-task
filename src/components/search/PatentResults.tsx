@@ -18,13 +18,13 @@ type PatentResultsProps = {
 
 export function PatentResults({ response, loading }: PatentResultsProps) {
   const view = useLensStore((d) => d.view)
-  const facetKeys = [PatentTermsAggregationKey.PublicationType, PatentTermsAggregationKey.LegalStatus]
+  const facetKeys = [PatentTermsAggregationKey.PublicationType, PatentTermsAggregationKey.LegalStatus, PatentTermsAggregationKey.Jurisdiction]
 
   if (loading) return <Loading />
   if (!response) return <BigMessage>No results</BigMessage>
 
   return (
-    <div className="md:grid grid-cols-12 grid-flow-row gap-2">
+    <div className="grid-flow-row grid-cols-12 gap-2 md:grid">
       <aside className="md:col-span-3 xl:col-span-2">
         {response?.aggregations &&
           facetKeys.map((k) => (
